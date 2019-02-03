@@ -12,12 +12,10 @@ fileObject.close()
 
 mySort = MySort()
 
-print("Unsorted List: ")
+print("List before sorting: ")
 mySort.printMyList(myList)
 
-newList = mySort.bubbleSort(myList)
-print("\n")
-print("Sorted List: ")
-mySort.printMyList(newList)
+mySort.bubbleSort(myList)
 
-
+print("List after sorting: ")
+mySort.printMyList(myList)

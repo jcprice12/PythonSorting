@@ -5,8 +5,13 @@ class MySort:
 		"""Constructor"""
 		pass
 
+	def __swap(self, list, x, y):
+		temp = list[x]
+		list[x] = list[y]
+		list[y] = temp
+
 	def printMyList(self, myList):
-		"""Print a list given"""
+		"""Print a given list"""
 		for i in range(len(myList)):
 			if i != (len(myList) - 1):
 				print((str(myList[i]) + ", "), end='')
@@ -15,16 +20,17 @@ class MySort:
 
 	def bubbleSort(self, myList):
 		"""Bubble Sort implementation."""
-		newList = list(myList)
 		swapped = True
 		while swapped:
 			swapped = False
-			for i in range(1, len(newList)):
-				if newList[i] < newList[i-1]:
-					temp = newList[i-1]
-					newList[i-1] = newList[i]
-					newList[i] = temp
+			for i in range(1, len(myList)):
+				if myList[i] < myList[i-1]:
+					self.__swap(myList, i-1, i)
 					swapped = True
-		return newList
 
-
+	def insertionSort(self, myList):
+		"""Insertion Sort Implementation."""
+		for i in range(1, len(myList)):
+			while i > 0 and myList[i] < myList[i-1]:
+				self.__swap(myList, i-1, i)
+				i -= 1
