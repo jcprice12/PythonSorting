@@ -10,6 +10,29 @@ class MySort:
 		list[x] = list[y]
 		list[y] = temp
 
+	def __mergeSortImpl(self, myList, start, end):
+		if (end - start) > 0:
+			middle = (start + end) // 2
+			self.__mergeSortImpl(myList, start, middle)
+			self.__mergeSortImpl(myList, middle + 1, end)
+			
+			combinedList = list()
+			i = start
+			j = middle + 1
+				
+			while i <= middle and j <= end:
+				if myList[i] < myList[j]:
+					combinedList.append(myList[i])
+					i += 1
+				else :
+					combinedList.append(myList[j])
+					j += 1
+
+			for k in range(j, end + 1) if i > middle else range(i, middle + 1):
+				combinedList.append(myList[k])
+
+			myList[start:end + 1] = combinedList
+
 	def printMyList(self, myList):
 		"""Print a given list"""
 		for i in range(len(myList)):
@@ -34,3 +57,7 @@ class MySort:
 			while i > 0 and myList[i] < myList[i-1]:
 				self.__swap(myList, i-1, i)
 				i -= 1
+
+	def mergeSort(self, myList):
+		"""Merge Sort Implmenentation"""
+		self.__mergeSortImpl(myList, 0, len(myList) -1)

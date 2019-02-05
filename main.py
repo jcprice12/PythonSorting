@@ -15,7 +15,7 @@ mySort = MySort()
 print("List before sorting: ")
 mySort.printMyList(myList)
 
-mySort.bubbleSort(myList)
+mySort.mergeSort(myList)
 
 print("List after sorting: ")
 mySort.printMyList(myList)
