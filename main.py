@@ -1,5 +1,5 @@
 import sys
-from sorts import MySort
+import sorts
 
 fileName = sys.argv[1]
 fileObject = open(fileName, "r")
@@ -10,12 +10,10 @@ for line in fileObject:
 	
 fileObject.close()
 
-mySort = MySort()
-
 print("List before sorting: ")
-mySort.printMyList(myList)
+sorts.printMyList(myList)
 
-mySort.mergeSort(myList)
+sorts.mergeSort(myList)
 
 print("List after sorting: ")
-mySort.printMyList(myList)
+sorts.printMyList(myList)
