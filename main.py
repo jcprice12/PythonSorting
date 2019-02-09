@@ -13,7 +13,7 @@ fileObject.close()
 print("List before sorting: ")
 sorts.printMyList(myList)
 
-sorts.mergeSort(myList)
+sorts.quickSort(myList)
 
 print("List after sorting: ")
 sorts.printMyList(myList)

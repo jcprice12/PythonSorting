@@ -1,3 +1,5 @@
+from random import randint
+
 def _swap(list, x, y):
 	temp = list[x]
 	list[x] = list[y]
@@ -26,8 +28,31 @@ def _mergeSortImpl(myList, start, end):
 
 		myList[start:end + 1] = combinedList
 
+def _partition(myList, start, end):
+	_swap(myList, end, randint(start,end))
+	pivot = end
+	left = start
+	right = end - 1
+
+	while True:
+		while left <= right and myList[left] <= myList[pivot]:
+			left += 1
+		while right >= left and myList[right] >= myList[pivot]:
+			right -= 1
+		
+		if left > right:
+			_swap(myList, left, pivot)
+			return left
+		else:
+			_swap(myList, left, right)
+
+def _quickSortImpl(myList, start, end):
+	if start < end :
+		partitionIndex = _partition(myList, start, end)
+		_quickSortImpl(myList, start, partitionIndex - 1)
+		_quickSortImpl(myList, partitionIndex + 1, end)
+
 def printMyList(myList):
-	"""Print a given list"""
 	for i in range(len(myList)):
 		if i != (len(myList) - 1):
 			print((str(myList[i]) + ", "), end='')
@@ -35,7 +60,6 @@ def printMyList(myList):
 			print(str(myList[i]))
 
 def bubbleSort(myList):
-	"""Bubble Sort implementation."""
 	swapped = True
 	while swapped:
 		swapped = False
@@ -45,12 +69,13 @@ def bubbleSort(myList):
 				swapped = True
 
 def insertionSort(myList):
-	"""Insertion Sort Implementation."""
 	for i in range(1, len(myList)):
 		while i > 0 and myList[i] < myList[i-1]:
 			_swap(myList, i-1, i)
 			i -= 1
 
 def mergeSort(myList):
-	"""Merge Sort Implmenentation"""
-	_mergeSortImpl(myList, 0, len(myList) -1)
+	_mergeSortImpl(myList, 0, len(myList) - 1)
+
+def quickSort(myList):
+	_quickSortImpl(myList, 0, len(myList) - 1)
